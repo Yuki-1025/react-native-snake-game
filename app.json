@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "MVProject",
+    "slug": "MVProject",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "MVProject"
+}
