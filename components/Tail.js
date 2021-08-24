@@ -2,8 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import Constants from './../Constants.js';
 
-const Tail = ({length, position, size}) => {
-  const tailList = length.map((item, i) => {
+const Tail = ({elements, position, size}) => {
+  const tailList = elements.map((item, i) => {
     <View
       key={i}
       style={{
