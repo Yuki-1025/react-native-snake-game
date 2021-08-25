@@ -50,8 +50,10 @@ export default function (entities, {events, dispatch}) {
     } else {
       tail.elements = [[head.position[0], head.position[1]], ...tail.elements];
       tail.elements.pop();
+
       head.position[0] += head.xspeed;
       head.position[1] += head.yspeed;
+
       tail.elements.forEach((item, i) => {
         console.log({item, i});
         if (
@@ -66,7 +68,7 @@ export default function (entities, {events, dispatch}) {
         head.position[1] === food.position[1]
       ) {
         //add length
-        tail.elements = [[head.position[0], head.position[1]], ...tail.elements];
+        tail.elements = [[food.position[0], food.position[1]]].concat(tail.elements);
         //generate a new food
         food.position = [positionGenerator(0, Constants.GRID_SIZE - 1), positionGenerator(0, Constants.GRID_SIZE - 1)];
       }

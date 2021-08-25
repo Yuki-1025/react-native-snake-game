@@ -4,12 +4,12 @@ import Constants from './../Constants.js';
 
 const Tail = ({elements, position, size}) => {
   const tailList = elements.map((item, i) => {
-    <View
+    return <View
       key={i}
       style={{
         width: size,
         height: size,
-        backgroundColor: 'green',
+        backgroundColor: '#00FF00',
         position: 'absolute',
         left: item[0] * size,
         top: item[1] * size,
