@@ -9,6 +9,7 @@ export default function (entities, {events, dispatch}) {
   const head = entities.head;
   const food = entities.food;
   const tail = entities.tail;
+  const board = entities.board;
 
   if (events.length) {
     events.forEach((e) => {
@@ -62,7 +63,7 @@ export default function (entities, {events, dispatch}) {
           dispatch('game-over');
         }
       })
-
+      //eat food
       if (
         head.position[0] === food.position[0] &&
         head.position[1] === food.position[1]
@@ -71,6 +72,11 @@ export default function (entities, {events, dispatch}) {
         tail.elements = [[food.position[0], food.position[1]]].concat(tail.elements);
         //generate a new food
         food.position = [positionGenerator(0, Constants.GRID_SIZE - 1), positionGenerator(0, Constants.GRID_SIZE - 1)];
+        // increase score
+        board.score += 5
+        if (board.score > board.highestScore) {
+          board.highestScore = board.score;
+        };
       }
     }
   }

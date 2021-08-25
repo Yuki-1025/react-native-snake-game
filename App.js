@@ -8,6 +8,7 @@ import Head from './components/Head.js';
 import Tail from './components/Tail.js';
 import Food from './components/Food.js';
 import GameLoop from './systems/GameLoop.js';
+import ScoreBoard from './components/score.js';
 
 export default function App() {
   const BoardSize = Constants.GRID_SIZE * Constants.CELL_SIZE;
@@ -37,13 +38,19 @@ export default function App() {
         size: Constants.CELL_SIZE,
         elements: [],
         renderer: <Tail/>
-      }
+      },
+      board: {
+        score: 0,
+        highestScore: 35, //needs modification later
+        renderer: <ScoreBoard/>
+      },
     });
     setIsGameRunning(true);
   };
 
   return (
     <View style={styles.canvas}>
+      {/* <ScoreBoard/><br/> */}
       <GameEngine
         ref={engine}
         style={{
@@ -71,7 +78,12 @@ export default function App() {
             size: Constants.CELL_SIZE,
             elements: [],
             renderer: <Tail />
-          }
+          },
+          board: {
+            score: 0,
+            highestScore: 35, //needs modification later
+            renderer: <ScoreBoard/>
+          },
         }}
         systems={[GameLoop]}
         running={isGameRunning}
@@ -83,7 +95,7 @@ export default function App() {
               return;
           }
         }}
-        />
+        /><br/>
         <View style={styles.controlContainer}>
           <View style={styles.controllerRow}>
             <TouchableOpacity onPress={() => engine.current.dispatch("move-up")}>
@@ -150,6 +162,11 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     width: 100,
     height: 100,
-  }
+  },
+  // board: {
+  //   backgroundColor: 'violet',
+  //   width: 200,
+  //   height: 50,
+  // }
 });
 
