@@ -9,14 +9,16 @@ const ScoreBoard = ({score, highestScore}) => {
               color: 'white',
               marginTop: 15,
               fontSize: 16,
+              fontWeight: 'bold',
               padding: 8,
               backgroundColor: 'purple',
               borderRadius:10
-            }}>Score: {score}</Text>
+      }}>Score: {score}</Text>
       <Text style={{
               color: 'white',
               marginTop: 15,
               fontSize: 16,
+              fontWeight: 'bold',
               padding: 8,
               backgroundColor: 'purple',
               borderRadius:10

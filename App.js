@@ -20,6 +20,8 @@ export default function App() {
   const [isGameRunning, setIsGameRunning] = useState(true);
   const [retry, setRetry] = useState(false);
   const [hearts, setHearts] = useState(3);
+  const [foodCount, setFoodCount] = useState(1);
+  const [score, setScore] = useState(0);
 
   const resetGame = () => {
     //setHearts(3);
@@ -37,6 +39,8 @@ export default function App() {
       food: {
         position: [positionGenerator(0, Constants.GRID_SIZE - 1), positionGenerator(0, Constants.GRID_SIZE - 1)],
         size: Constants.CELL_SIZE,
+        counter: foodCount,
+        setCounter: setFoodCount,
         renderer: <Food/>
       },
       tail: {
@@ -45,7 +49,8 @@ export default function App() {
         renderer: <Tail/>
       },
       board: {
-        score: 0,
+        score: score,
+        setScore: setScore,
         highestScore: localStorage.getItem('snakeHighest') || 0,
         renderer: <ScoreBoard/>
       },
@@ -73,6 +78,8 @@ export default function App() {
       food: {
         position: [positionGenerator(0, Constants.GRID_SIZE - 1), positionGenerator(0, Constants.GRID_SIZE - 1)],
         size: Constants.CELL_SIZE,
+        counter: foodCount,
+        setCounter: setFoodCount,
         renderer: <Food/>
       },
       tail: {
@@ -81,7 +88,8 @@ export default function App() {
         renderer: <Tail/>
       },
       board: {
-        score: 0,
+        score: score,
+        setScore: setScore,
         highestScore: localStorage.getItem('snakeHighest') || 0,
         renderer: <ScoreBoard/>
       },
@@ -119,6 +127,8 @@ export default function App() {
           food: {
             position: [positionGenerator(0, Constants.GRID_SIZE - 1), positionGenerator(0, Constants.GRID_SIZE - 1)],
             size: Constants.CELL_SIZE,
+            counter: foodCount,
+            setCounter: setFoodCount,
             renderer: <Food />
           },
           tail: {
@@ -127,7 +137,8 @@ export default function App() {
             renderer: <Tail />
           },
           board: {
-            score: 0,
+            score: score,
+            setScore: setScore,
             highestScore: localStorage.getItem('snakeHighest') || 0,
             renderer: <ScoreBoard/>
           },
@@ -145,6 +156,7 @@ export default function App() {
               alert('Game over!');
               setIsGameRunning(false);
               setHearts(3);
+              setScore(0);
               return;
             case 're-try':
               alert('Try again!');
@@ -234,14 +246,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   controlBtn: {
-    backgroundColor: "red",
+    backgroundColor: "pink",
     width: 100,
     height: 100,
   },
-  // board: {
-  //   backgroundColor: 'violet',
-  //   width: 200,
-  //   height: 50,
-  // }
 });
 

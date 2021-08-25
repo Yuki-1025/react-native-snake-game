@@ -72,6 +72,7 @@ export default function (entities, {events, dispatch}) {
           head.position[0] === item[0] && head.position[1] === item[1]
         ) {
           livesBoard.lives --;
+          livesBoard.setLives(livesBoard.lives);
           if (livesBoard.lives === 0) {
             dispatch('game-over');
           } else {
@@ -90,8 +91,16 @@ export default function (entities, {events, dispatch}) {
         tail.elements = [[food.position[0], food.position[1]]].concat(tail.elements);
         //generate a new food
         food.position = [positionGenerator(0, Constants.GRID_SIZE - 1), positionGenerator(0, Constants.GRID_SIZE - 1)];
+          // if special fruit:
+        if (food.counter % 3 === 0) {
+          livesBoard.lives ++;
+          livesBoard.setLives(livesBoard.lives);
+        }
+        food.counter ++; //return to food.js
+        food.setCounter(food.counter); //return to app.js state
         // increase score
-        board.score += 5
+        board.score += 5;
+        board.setScore(board.score);
         if (board.score > board.highestScore) {
           board.highestScore = board.score;
           localStorage.setItem('snakeHighest', board.highestScore);

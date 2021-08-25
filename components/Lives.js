@@ -12,7 +12,7 @@ function Lives ({lives}) {
 
   return (
     <View style={{alignItems: 'flex-end'}}>
-      <Text style={{backgroundColor: 'white', alignSelf: 'flex-end', fontSize: 18}}>
+      <Text style={{ alignSelf: 'flex-end', fontSize: 18, color: 'red'}}>
         {hearts}
       </Text>
     </View>
