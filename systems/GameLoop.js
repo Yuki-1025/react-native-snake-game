@@ -10,6 +10,7 @@ export default function (entities, {events, dispatch}) {
   const food = entities.food;
   const tail = entities.tail;
   const board = entities.board;
+  const livesBoard = entities.livesBoard;
 
   if (events.length) {
     events.forEach((e) => {
@@ -41,13 +42,23 @@ export default function (entities, {events, dispatch}) {
   head.nextMove -= 1;
   if (head.nextMove === 0) {
     head.nextMove = head.updateFrequency;
+    //hit a wall
     if (
       head.position[0] + head.xspeed < 0 ||
       head.position[0] + head.xspeed >= Constants.GRID_SIZE ||
       head.position[1] + head.yspeed < 0 ||
       head.position[1] + head.yspeed >= Constants.GRID_SIZE
     ) {
-      dispatch('game-over');//game over EVENT
+      //reduce a heart
+      livesBoard.lives --;
+      livesBoard.setLives(livesBoard.lives);
+      if (livesBoard.lives === 0) {
+        dispatch('game-over');
+      } else {
+        // redirect to the opposite direction?
+        dispatch('re-try');
+      }
+      //dispatch('game-over');//game over EVENT
     } else {
       tail.elements = [[head.position[0], head.position[1]], ...tail.elements];
       tail.elements.pop();
@@ -56,11 +67,18 @@ export default function (entities, {events, dispatch}) {
       head.position[1] += head.yspeed;
 
       tail.elements.forEach((item, i) => {
-        console.log({item, i});
+        //console.log({item, i});
         if (
           head.position[0] === item[0] && head.position[1] === item[1]
         ) {
-          dispatch('game-over');
+          livesBoard.lives --;
+          if (livesBoard.lives === 0) {
+            dispatch('game-over');
+          } else {
+            // try again
+            dispatch('re-try');
+          };
+          //dispatch('game-over');
         }
       })
       //eat food
