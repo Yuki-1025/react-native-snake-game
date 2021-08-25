@@ -76,6 +76,7 @@ export default function (entities, {events, dispatch}) {
         board.score += 5
         if (board.score > board.highestScore) {
           board.highestScore = board.score;
+          localStorage.setItem('snakeHighest', board.highestScore);
         };
       }
     }

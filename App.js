@@ -17,6 +17,7 @@ export default function App() {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
   const [isGameRunning, setIsGameRunning] = useState(true);
+  const [highestScore, setHighestScore] = useState(25);
 
   const resetGame = () => {
     engine.current.swap({
@@ -41,7 +42,7 @@ export default function App() {
       },
       board: {
         score: 0,
-        highestScore: 35, //needs modification later
+        highestScore: localStorage.getItem('snakeHighest') || 0,
         renderer: <ScoreBoard/>
       },
     });
@@ -81,7 +82,7 @@ export default function App() {
           },
           board: {
             score: 0,
-            highestScore: 35, //needs modification later
+            highestScore: localStorage.getItem('snakeHighest') || 0,
             renderer: <ScoreBoard/>
           },
         }}
