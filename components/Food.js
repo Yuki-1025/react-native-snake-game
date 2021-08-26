@@ -27,7 +27,7 @@ const Food = ({position, size, counter}) => {
         style={{
           width: size,
           height: size,
-          backgroundColor: 'yellow',
+          // backgroundColor: 'yellow',
           position: 'absolute',
           left: position[0] * size,
           top: position[1] * size,

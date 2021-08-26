@@ -3,7 +3,8 @@ mongoose.connect('mongodb://localhost/fetcher');
 
 let scoreboardSchema = mongoose.Schema({
   user: String,
-  score: Number
+  score: Number,
+  time : { type : Date, default: Date.now }
 });
 
 let ScoreBoard = mongoose.model('ScoreBoard', scoreboardSchema);
