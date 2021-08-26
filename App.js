@@ -10,6 +10,7 @@ import Food from './components/Food.js';
 import GameLoop from './systems/GameLoop.js';
 import ScoreBoard from './components/score.js';
 import Lives from './components/Lives.js';
+import Obstacles from './components/Obstacles.js';
 
 export default function App() {
   const BoardSize = Constants.GRID_SIZE * Constants.CELL_SIZE;
@@ -58,7 +59,12 @@ export default function App() {
         lives: hearts,
         setLives: setHearts,
         renderer: <Lives/>
-      }
+      },
+      // obstacles: {
+      //   size: Constants.CELL_SIZE,
+      //   score: score,
+      //   renderer: <Obstacles/>
+      // }
     });
     setIsGameRunning(true);
   };
@@ -97,7 +103,12 @@ export default function App() {
         lives: hearts,
         setLives: setHearts,
         renderer: <Lives/>
-      }
+      },
+      // obstacles: {
+      //   size: Constants.CELL_SIZE,
+      //   score: score,
+      //   renderer: <Obstacles/>
+      // }
     });
     setRetry(false);
     setIsGameRunning(true);
@@ -146,7 +157,13 @@ export default function App() {
             lives: hearts,
             setLives: setHearts,
             renderer: <Lives/>
-          }
+          },
+          // obstacles: {
+          //   positions: [],
+          //   size: Constants.CELL_SIZE,
+          //   score: score,
+          //   renderer: <Obstacles/>
+          // }
         }}
         systems={[GameLoop]}
         running={isGameRunning}

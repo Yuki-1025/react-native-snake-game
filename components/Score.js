@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 const ScoreBoard = ({score, highestScore}) => {
-
+  //console.log('IN ScoreBoar ', score);
   return (
     <View style={{width: 100}}>
       <Text style={{

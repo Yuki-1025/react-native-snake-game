@@ -11,6 +11,7 @@ export default function (entities, {events, dispatch}) {
   const tail = entities.tail;
   const board = entities.board;
   const livesBoard = entities.livesBoard;
+  //const obstacles = entities.obstacles;
 
   if (events.length) {
     events.forEach((e) => {
@@ -101,6 +102,7 @@ export default function (entities, {events, dispatch}) {
         // increase score
         board.score += 5;
         board.setScore(board.score);
+        // obstacles.score = board.score;
         if (board.score > board.highestScore) {
           board.highestScore = board.score;
           localStorage.setItem('snakeHighest', board.highestScore);
